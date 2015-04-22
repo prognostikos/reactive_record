@@ -13,7 +13,7 @@ module ReactiveRecord
         db = PG.connect dbname: db_env['database']
         table_names(db).each do |table|
           unless table == 'schema_migrations'
-            create_file "app/models/#{table.underscore.pluralize}.rb", model_definition(db, table)
+            create_file "app/models/#{table.underscore.singularize}.rb", model_definition(db, table)
           end
         end
       end

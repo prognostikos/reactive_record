@@ -6,14 +6,14 @@ require 'parser'
 
 module ReactiveRecord
   def model_definition db, table_name
-    header = "class #{table_name.classify.pluralize} < ActiveRecord::Base\n"
+    header = "class #{table_name.classify} < ActiveRecord::Base\n"
     footer = "end\n"
 
     body = []
-    body << "set_table_name '#{table_name}'"
-    body << "set_primary_key :#{primary_key db, table_name}"
-    body << "#{validate_definition non_nullable_columns(db, table_name), 'presence'}"
-    body << "#{validate_definition unique_columns(db, table_name), 'uniqueness'}"
+    # body << "set_table_name '#{table_name}'"
+    # body << "set_primary_key :#{primary_key db, table_name}"
+    # body << "#{validate_definition non_nullable_columns(db, table_name), 'presence'}"
+    # body << "#{validate_definition unique_columns(db, table_name), 'uniqueness'}"
 
     generate_constraints(db, table_name).each do |con|
       body << con
